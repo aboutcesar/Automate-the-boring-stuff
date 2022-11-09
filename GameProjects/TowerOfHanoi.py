@@ -1,4 +1,9 @@
 #! Tower of Hanoi Program
+import copy, sys
+
+total_disks = 5
+
+solved_tower = list(range(total_disks, 0, -1))
 
 #main
 def main():
@@ -11,14 +16,40 @@ More info at:
 
 
     display_Tower(towers)
+
+    fromTower, toTower = getPlayerMove()
     
 
 #Display Tower
-def display_Tower():
-    pass
+def display_Tower(towers):
+    for levels in range(total_disks, -1, -1):
+        for tower in (towers["A"],towers["B"],towers["c"]):
+            if level >= len(towers):
+                print(0)
+            else:
+                print(tower[level])
+
+    print()
+
+    #display the colums
+    emptySpace = " " * total_disks
+    print(" {0} A{0}{0} B{0}{0} C\n".format(emptyspace))
+
 #get the player move
-def get_Player_Move():
-    pass
+def getPlayerMove():
+    while True:
+        print("please enter the tower letters to move the from and to")
+        print("eg. from tower A to tower B --> AB\n")
+
+        response = input().upper().strip()
+
+        if response == "QUIT":
+            print("Thanks for playing")
+            sys.exit()
+
+        if reponse not in ("AB", "AC", "BA", "
+
+        
 #Check if valid Move
 def isvalidmove():
     pass

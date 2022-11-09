@@ -4,7 +4,7 @@ Empty_Space = "."
 player_X    = "x"
 player_O    = "O"
 
-board_width     = 7
+board_width    = 7
 board_height   = 6
 columns_Labels = ("1","2","3","4","5","6","7")
 
@@ -22,19 +22,21 @@ board_Templete = """
   """
 
 def main():
-    '''Runs only one round of the connect 4'''
+    """Runs only one round of the connect 4"""
     print("4 in a row: ")
+    
     #new board and player turn 
-    board = getNewBoad()
+    board = getNewBoard()
     player_turn = player_X
 
     while True:
         print(board)
         
+        
 
     
 
-def getNewBaord():
+def getNewBoard():
     #creates a fresh clean board using global columns and width
     newboard = {}
     for column_index in board_width:
@@ -45,15 +47,15 @@ def getNewBaord():
 def getPlayerMove(playerTurn, board):
     while True:
         #ask player to enter a column to place the disk
-        print(f'Player {playerTurn}, Enter 1 to {board_width}, or Quit to end: ')
+        print(f"Player {playerTurn}, Enter 1 to {board_width}, or Quit to end: ")
         response = input()
 
         if str.lower(response) == 'quit':
             print("thanks for playing")
             sys.exit()
-        if str(response) not in column labels:
+        if str(response) not in column_Labels:
             print("That is not a valid column")
-            print(f'Enter a column from 1 to {board_width')
+            print(f'Enter a column from 1 to {board_width}')
 
         column_index = int(response) - 1
         if board[(column_index, 0)] != Empty_Space:
@@ -69,7 +71,7 @@ def isWinner(playerTile, board):
 #need to check diagnol, vertical, and horizontal
     #vertical
     for column_index in range(board_width):
-        for row_index in range(board_Height-3): #3 because we are only checking 4 places and there are 7 rows
+        for row_index in range(board_height-3): #3 because we are only checking 4 places and there are 7 rows
             place1 == board[(column_index,row_index)]
             place2 == board[(column_index,row_index+1)]
             place3 == board[(column_index,row_index+2)]
@@ -79,7 +81,7 @@ def isWinner(playerTile, board):
                 return True
     # Horizontal
     for column_index in range(board_width-3):
-        for row_index in range(board_Height): 
+        for row_index in range(board_height): 
             place1 == board[(column_index,row_index)]
             place2 == board[(column_index+1,row_index)]
             place3 == board[(column_index+2,row_index)]
@@ -90,7 +92,7 @@ def isWinner(playerTile, board):
 
     #diagnal to the right
     for column_index in range(board_width-3):
-        for row_index in range(board_Height-3):
+        for row_index in range(board_height-3):
             place1 == board[(column_index,row_index)]
             place2 == board[(column_index+1,row_index+1)]
             place3 == board[(column_index+2,row_index+2)]
