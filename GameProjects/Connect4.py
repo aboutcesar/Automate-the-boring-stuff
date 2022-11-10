@@ -55,9 +55,9 @@ def getPlayerMove(playerTurn, board):
             sys.exit()
         if str(response) not in column_Labels:
             print("That is not a valid column")
-            print(f'Enter a column from 1 to {board_width}')
+            print(f"Enter a column from 1 to {board_width}")
 
-        column_index = int(response) - 1
+        column_index = int(response) - 1 
         if board[(column_index, 0)] != Empty_Space:
             print("This column is full. Please choose another column")
             continue # Finishes and goes again to ask the player
