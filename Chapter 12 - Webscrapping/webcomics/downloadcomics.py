@@ -1,30 +1,31 @@
-import bs4, sys, requests
+import os, requests
+import bs4
 
 # load homepage
 url = 'https://xkcd.com/'
 
 
 #Retrive
-os.makedirs('xkcd', exist_ok = true)
+os.makedirs('xkcd', exist_ok = True)
 
 
 
 while not url.endswith('#'):
     #downloads the page
     print('Downloading...')
-    res = request.get(url)
-    res.status_code()
-    soup = bs4.beautifulsoup4(res.text, 'html.parser')
+    res = requests.get(url)
+    res.raise_for_status()
+    soup = bs4.BeautifulSoup(res.text, 'html.parser')
 
 
     # find the comic url
-    comicElem = soup.selec('#comic img')
-    if comicElem = []:
+    comicElems = soup.select('#comic img')
+    if comicElems == []:
         print('picture')
     else:
-        comicUrl = 'https://' + comicElems.get('src')
+        comicUrl = 'https:' + comicElems[0].get('src')
         #download the image
-        res = request.get(comicUrl)
+        res = requests.get(comicUrl)
         res.raise_for_status()
 
         #Save to xcdk
