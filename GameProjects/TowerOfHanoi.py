@@ -41,14 +41,23 @@ def getPlayerMove():
         print("please enter the tower letters to move the from and to")
         print("eg. from tower A to tower B --> AB\n")
 
-        response = input().upper().strip()
+        response = input("> ").upper().strip()
 
         if response == "QUIT":
             print("Thanks for playing")
             sys.exit()
 
-        if reponse not in ("AB", "AC", "BA", "
-
+        if reponse not in ("AB", "AC", "BA", "BC", "CA", "CB"):
+            print("That is not a valid Selection, Enter (AB, AC, BA, BC, CA, CB)" )
+            continue
+        fromtower, totower = response[0],response[1]
+        if len(tower[fromtower]) == 0:
+            print("Tower empty, please pick a start tower that has disks")
+            continue
+        elif len(tower[totower]) == 0:
+            return fromtower, totower
+        elif len(    #cant put large on top of small
+        
         
 #Check if valid Move
 def isvalidmove():
