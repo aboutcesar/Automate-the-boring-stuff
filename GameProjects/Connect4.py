@@ -30,9 +30,19 @@ def main():
     player_turn = player_X
 
     while True:
-        print(board)
+
+        displayBoard()
+
+        playerMove = getplayerMove(player_turn, board)
         
         
+        #win?
+        if isWinner(player_turn, board):
+            displayBoard()
+            print("Player {} has WON!".format(player_turn))
+        #Full?
+
+        #Swtich
 
     
 
@@ -122,8 +132,14 @@ def isFull(board):
                      return False 
     return True 
 
-def displayBoard():
-    pass
+def displayBoard(board):
+    chart = []
+    for row_index in range(board_height):
+        for column_index in range(board_width):
+            chart.append(board[column_index, row_index])
+            
+    print(board_template.format(*chart))
+            
 
 
 if __name__ == "__main__":
