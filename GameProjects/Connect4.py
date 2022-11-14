@@ -6,10 +6,10 @@ player_O    = "O"
 
 board_width    = 7
 board_height   = 6
-columns_Labels = ("1","2","3","4","5","6","7")
+column_Labels = ("1","2","3","4","5","6","7")
 
 #templete for displaying the board
-board_Templete = """
+board_Template = """
    1234567
   *.......*
 |{}{}{}{}{}{}|
@@ -31,9 +31,9 @@ def main():
 
     while True:
 
-        displayBoard()
+        displayBoard(board)
 
-        playerMove = getplayerMove(player_turn, board)
+        playerMove = getPlayerMove(player_turn, board)
         
         
         #win?
@@ -49,8 +49,8 @@ def main():
 def getNewBoard():
     #creates a fresh clean board using global columns and width
     newboard = {}
-    for column_index in board_width:
-        for row_index in board_height:
+    for column_index in range(board_width):
+        for row_index in range(board_height):
             newboard[(column_index, row_index)] = Empty_Space
     return newboard
 
@@ -67,13 +67,14 @@ def getPlayerMove(playerTurn, board):
             print("That is not a valid column")
             print(f"Enter a column from 1 to {board_width}")
 
-        column_index = int(response) - 1 
+        column_index = int(response) - 1
+
         if board[(column_index, 0)] != Empty_Space:
             print("This column is full. Please choose another column")
             continue # Finishes and goes again to ask the player
         for row_index in range(board_height - 1, -1, -1): # 
             if board[(column_index, row_index)] == Empty_Space:
-                return(column_index, row_index)]
+                return(column_index, row_index)
             
         
 
@@ -82,43 +83,43 @@ def isWinner(playerTile, board):
     #vertical
     for column_index in range(board_width):
         for row_index in range(board_height-3): #3 because we are only checking 4 places and there are 7 rows
-            place1 == board[(column_index,row_index)]
-            place2 == board[(column_index,row_index+1)]
-            place3 == board[(column_index,row_index+2)]
-            place4 == board[(column_index,row_index+3)]
+            place1 = board[(column_index,row_index)]
+            place2 = board[(column_index,row_index+1)]
+            place3 = board[(column_index,row_index+2)]
+            place4 = board[(column_index,row_index+3)]
 
-            if place1 = place2 = place3 = place4=playerTile:
+            if place1 == place2 == place3 == place4 == playerTile:
                 return True
     # Horizontal
     for column_index in range(board_width-3):
         for row_index in range(board_height): 
-            place1 == board[(column_index,row_index)]
-            place2 == board[(column_index+1,row_index)]
-            place3 == board[(column_index+2,row_index)]
-            place4 == board[(column_index+3,row_index)]
+            place1 = board[(column_index,row_index)]
+            place2 = board[(column_index+1,row_index)]
+            place3 = board[(column_index+2,row_index)]
+            place4 = board[(column_index+3,row_index)]
 
-            if place1 = place2 = place3 = place4=playerTile:
+            if place1 == place2 == place3 == place4 == playerTile:
                 return True
 
     #diagnal to the right
     for column_index in range(board_width-3):
         for row_index in range(board_height-3):
-            place1 == board[(column_index,row_index)]
-            place2 == board[(column_index+1,row_index+1)]
-            place3 == board[(column_index+2,row_index+2)]
-            place4 == board[(column_index+3,row_index+3)]
+            place1 = board[(column_index,row_index)]
+            place2 = board[(column_index+1,row_index+1)]
+            place3 = board[(column_index+2,row_index+2)]
+            place4 = board[(column_index+3,row_index+3)]
 
-            if place1 = place2 = place3 = place4=playerTile:
+            if place1 == place2 == place3 == place4 == playerTile:
                 return True
 
     #diagnal to the left
      
-            place1 == board[(column_index+3,row_index)]
-            place2 == board[(column_index+2,row_index+1)]
-            place3 == board[(column_index+1,row_index+2)]
-            place4 == board[(column_index,row_index+3)]
+            place1 = board[(column_index+3,row_index)]
+            place2 = board[(column_index+2,row_index+1)]
+            place3 = board[(column_index+1,row_index+2)]
+            place4 = board[(column_index,row_index+3)]
 
-            if place1 = place2 = place3 = place4=playerTile:
+            if place1 == place2 == place3 == place4 == playerTile:
                 return True
     return False
 
@@ -128,7 +129,7 @@ def isFull(board):
     #is the board full? return false 
     for column_index in range(board_width-1):
         for row_index in range(board_height-1,-1,-1):
-            if board[(column_index, row_index) == Empty_space:
+            if board[(column_index, row_index)] == Empty_Space:
                      return False 
     return True 
 
@@ -138,7 +139,7 @@ def displayBoard(board):
         for column_index in range(board_width):
             chart.append(board[column_index, row_index])
             
-    print(board_template.format(*chart))
+    print(board_Template.format(*chart))
             
 
 
