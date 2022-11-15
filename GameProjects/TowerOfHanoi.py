@@ -11,14 +11,19 @@ def main():
     print("""
                 Move the tower of disks, one disk at a time, to another tower.
                 Larger disks cannot rest on top of smaller disks.
-More info at: 
+                More info at: 
                 """)
-
+    towers = {"A": copy.copy(solved_tower), "B": [], "C": []}
+    
 
     display_Tower(towers)
-
     fromTower, toTower = getPlayerMove()
-    
+
+    #change
+    diskleaving = towers[fromtower].pop()
+    towers[totower].append(diskleaving)
+    #Check if won
+    gameOver(towers)
 
 #Display Tower
 def display_Tower(towers):
@@ -29,14 +34,12 @@ def display_Tower(towers):
             else:
                 print(tower[level])
 
-    print()
-
     #display the colums
     emptySpace = " " * total_disks
     print(" {0} A{0}{0} B{0}{0} C\n".format(emptyspace))
 
 #get the player move
-def getPlayerMove():
+def getPlayerMove(towers):
     while True:
         print("please enter the tower letters to move the from and to")
         print("eg. from tower A to tower B --> AB\n")
@@ -51,21 +54,22 @@ def getPlayerMove():
             print("That is not a valid Selection, Enter (AB, AC, BA, BC, CA, CB)" )
             continue
         fromtower, totower = response[0],response[1]
-        if len(tower[fromtower]) == 0:
+        elif len(tower[fromtower]) == 0:
             print("Tower empty, please pick a start tower that has disks")
             continue
+
+        elif tower[totower][-1] > tower[fromtower][-1]:
+            print("You cannot place a bigger disk on top of a biigger disk.")
+            print("Try again")
+            continue
+
         elif len(tower[totower]) == 0:
             return fromtower, totower
-        elif len(    #cant put large on top of small
         
-        
-#Check if valid Move
-def isvalidmove():
-    pass
-
-#Change the board
-
 
 #Check if won
-def gameOver():
-    pass
+def gameOver(towers):
+    if solved_tower in towers:
+        print("you won")
+        print("congrats")
+        sys.exit()
